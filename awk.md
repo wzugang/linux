@@ -1,3 +1,5 @@
+```
+
 语法：
 awk 'pattern + {action}'
 说明：
@@ -6,6 +8,11 @@ awk 'pattern + {action}'
 （3）pattern是一个过滤器，表示命中pattern的行才进行action处理；
 （4）action是处理动作；
 （5）使用#作为注释；
+
+pattern说明
+pattern参数可以是egrep正则中的一个，正则使用/pattern/
+（1）pattern和action可以只有其一，但不能两者都没有；
+（2）默认的action是print；
 
 内置变量
 FS 分隔符，默认是空格
@@ -644,3 +651,5 @@ grep -v '^$' input.txt > output.txt    #output file: output.txt
 awk -F"|" '{OFS="|";$7=9999999999;print $0}' TTFILEDM_VOICE.txt
 
 awk -F"|" '{OFS="|";sub(/3/,99999999999,$7);print $0}' TTFILEDM_VOICE_20161103_0003000.txt
+
+```
