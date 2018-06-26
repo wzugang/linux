@@ -1,4 +1,71 @@
-2.23.24比较数据
+语法：
+awk 'pattern + {action}'
+说明：
+（1）单引号''是为了和shell命令区分开；
+（2）大括号{}表示一个命令分组；
+（3）pattern是一个过滤器，表示命中pattern的行才进行action处理；
+（4）action是处理动作；
+（5）使用#作为注释；
+
+内置变量
+FS 分隔符，默认是空格
+NR 当前行数，从1开始
+NF 当前记录字段个数
+$0 当前记录
+$1~$n 当前记录第n个字段
+
+内置函数:
+gsub(r,s)：在$0中用s代替r
+index(s,t)：返回s中t的第一个位置
+length(s)：s的长度
+match(s,r)：s是否匹配r
+split(s,a,fs)：在fs上将s分成序列a
+substr(s,p)：返回s从p开始的子串
+
+运算符
+类似于c，支持+、-、*、/、%、++、–、+=、-=等诸多操作；
+
+判断符
+类似于c，支持==、!=、>、=>、~（匹配于）等诸多判断操作；
+
+BEGIN和END
+BEGIN和END本质是一个pattern。
+BEGIN用于awk程序开始开始前，做一些初始化的工作；
+END用于awk程序结束前，做一些收尾的工作。
+
+流程控制语句
+（1）if(condition){}else{}
+（2）while{}
+（3）do{}while(condition);
+（4）for(init;condition;step){}
+（5）break/continue：如果有END，会执行END中的收尾工作
+
+awk与shell的交互
+（1）awk中使用shell中定义的变量：使用单引号即可；
+#!/bin/bash
+STR="hello"
+echo | awk '{
+print "'${STR}'";
+}'
+（2）awk中使用shell命令：使用双引号，或者system命令；
+#!/bin/bash
+echo hello | awk '{
+print $0 | "cat"
+}'
+或者
+#!/bin/bash
+echo | awk '{
+system("date > date.txt")
+}'
+（3）awk中的变量传出至shell：没有什么好方法，老老实实用文件吧；
+（4）getline：awk里，从文件中读取变量到awk中
+#!/bin/bash
+echo | awk '{
+  while(getline < "date.txt")
+  {
+  print $0;
+  }
+}'
 
 1）数组
 
