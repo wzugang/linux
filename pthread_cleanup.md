@@ -1,3 +1,4 @@
+```
 #include <stdio.h>
 #include <pthread.h>
 
@@ -43,4 +44,4 @@ int main()
 }
 
 gcc test.c -lpthread -o test
-
+```
