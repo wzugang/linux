@@ -1,4 +1,5 @@
 ```
+//getpid系统调用32位为0x14,64位为0x27
 
 1. syscall(64位)
 #include "stdio.h"
