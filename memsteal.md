@@ -1,3 +1,5 @@
+```
+
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
@@ -9,3 +11,5 @@ int main()
     printf("aaa %x bbb %x\n",&a);
     return 0;
 }
+
+```
